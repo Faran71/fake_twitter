@@ -14,22 +14,22 @@ public class Tweet {
     @Column
     private Long id;
 
-    @Column(name="order_date_time")
-    private LocalDateTime orderDateTime;
+    @Column(name="tweet_date_time")
+    private LocalDateTime tweetDateTime;
 
     @Column
     private String content;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties({"order"})
+    @JsonIgnoreProperties({"tweet"})
     private User user;
 
     public Tweet() {
     }
 
-    public Tweet(LocalDateTime orderDateTime, String content, User user) {
-        this.orderDateTime = orderDateTime;
+    public Tweet(LocalDateTime tweetDateTime, String content, User user) {
+        this.tweetDateTime = tweetDateTime;
         this.content = content;
         this.user = user;
     }
@@ -42,12 +42,12 @@ public class Tweet {
         this.id = id;
     }
 
-    public LocalDateTime getOrderDateTime() {
-        return orderDateTime;
+    public LocalDateTime getTweetDateTime() {
+        return tweetDateTime;
     }
 
-    public void setOrderDateTime(LocalDateTime orderDateTime) {
-        this.orderDateTime = orderDateTime;
+    public void setTweetDateTime(LocalDateTime tweetDateTime) {
+        this.tweetDateTime = tweetDateTime;
     }
 
     public String getContent() {
