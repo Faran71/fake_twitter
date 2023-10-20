@@ -22,7 +22,7 @@ public class UserService {
         return this.userRepository.findAll();
     }
 
-    public User AddUser(UserDTO userDTO){
+    public User addUser(UserDTO userDTO){
         String encryptPassword = passwordEncoder.encode(userDTO.getPassword());
 
         if(userRepository.findByEmail(userDTO.getEmail())!=null){
@@ -32,9 +32,15 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
-    public User checkCredentials(String email, String Password){
+    public User checkCredentials(String email, String password){
         // find the user by email
         User user = userRepository.findByEmail(email);
+        // Check password matches when encoded
+        if (user != null && passwordEncoder.matches(password, user.getPassword())){
+            return user;
+        }
+        // if no user matches then return null
+        return null;
 
     }
 }
