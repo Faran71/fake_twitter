@@ -1,0 +1,43 @@
+.main {
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr;
+}
+
+.left {
+    width: 20vw;
+    padding-left: 0;
+}
+
+.all-tweets {
+    height: 90vh;
+    overflow-y: scroll;
+}
+
+.middle {
+    width: 50vw;
+}
+.middle h3 {
+    height: 5vh;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    justify-content: space-around;
+}
+
+.form input {
+    width: 20vw;
+    margin-left: 5vw;
+    height: 30vh;
+    
+}
+
+.form button {
+    width: 10vw;
+    margin-left: 10vw;
+}
+
+
+

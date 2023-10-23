@@ -1,10 +1,70 @@
-const MainPage = () => {
+import "./MainPage.css"
 
-    return(
-        <div>
-            <p>Hi</p>
-        </div>
-    )
+import DisplayTweet from "../Components/DisplayTweet"
+import { useEffect, useState } from "react"
+
+const MainPage = ({currentUser, allTweets, setAllTweets}) => {
+
+    const [newTweet, setNewTweet] = useState("");
+
+    const displayTweets = allTweets.map((tweet) => {
+        return(
+            <div>
+                <DisplayTweet tweet={tweet}/>
+            </div>
+        )
+    })
+
+    const postTweet = async (newTweet) => {
+        const newResponse = await fetch(`http://localhost:8080/tweets/postTweet/${currentUser.id}`,{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body:JSON.stringify(newTweet)
+        })
+        const data = await newResponse.json();
+        setAllTweets(data)
+    }
+
+    const handleTweetFormSubmit = (event) => {
+        event.preventDefault();
+        if(currentUser && newTweet!=""){
+            postTweet(newTweet);
+            setNewTweet("");
+        }
+    }
+
+
+
+    if(currentUser){
+        return(
+            <div className="main">
+                <div className="left">
+                    <p>Hi {currentUser.name}</p>
+                </div>
+                <div className="middle">
+                    <h3>Home</h3>
+                    <div className="all-tweets">
+                        {displayTweets}
+                    </div>
+                </div>
+                <form className="form" onSubmit={handleTweetFormSubmit}>
+                    <input type="text"  
+                    name="name"
+                    placeholder="Tweet...."
+                    value={newTweet}
+                    onChange={(e) => setNewTweet(e.target.value)}
+                    />
+                    <button type="submit">Post</button>
+                </form>   
+            </div>
+        )
+    } else {
+        return(
+            <div>
+                <p>loading...</p>
+            </div>
+        )
+    }
 }
 
 export default MainPage;

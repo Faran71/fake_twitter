@@ -1,0 +1,75 @@
+.main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: rgba(242,242,242,255);
+    height: 100vh;
+}
+
+.left {
+    padding-left: 10vw;
+}
+
+.img {
+    height: 60vh;
+    width: 30vw;
+    padding-top: 20vh;
+    padding-left: 10vw;
+}
+
+.right {
+    font-size: xx-large;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    font-weight: 5000;
+    /* margin-left: 25vw; */
+    padding-left: 30vw;
+}
+
+.right button {
+    font-size: x-large;
+    height: 10vh;
+    width: 20vw;
+    border-radius: 30vw;
+}
+
+.btn1 {
+    border: none;
+    background-color: aqua;
+    color: white;
+}
+
+.btn1:hover {
+    background-color: rgb(101, 240, 240);
+}
+
+.btn2 {
+    border: none;
+    background-color: black;
+    color: aqua;
+}
+
+.btn2:hover {
+    background-color: rgb(27, 26, 49);
+}
+
+.registration {
+    display: flex;
+    flex-direction: column;
+    height: 30vh;
+    justify-content: space-between;
+}
+.registration input,button {
+    height: 5vh;
+}
+
+.log-in {
+    display: flex;
+    flex-direction: column;
+    height: 20vh;
+    justify-content: space-between;
+}
+
+.log-in input,button {
+    height: 5vh;
+}

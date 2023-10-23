@@ -1,0 +1,14 @@
+.box {
+    border-style: dashed;
+    width: 40vw;
+}
+
+.middle {
+    height: 10vh;
+}
+
+.bottom {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
