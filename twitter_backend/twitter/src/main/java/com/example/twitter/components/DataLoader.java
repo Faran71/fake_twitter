@@ -36,7 +36,14 @@ public class DataLoader implements ApplicationRunner {
         User user = new User("Steve","@gmail",encryptPassword);
         userRepository.save(user);
 
-        Tweet tweet = new Tweet(LocalDateTime.now(),"First Tweet",user);
-        tweetRepository.save(tweet);
+        List<Tweet> tweets = Arrays.asList(
+                new Tweet(LocalDateTime.now(),"First Tweet",user),
+                new Tweet(LocalDateTime.now(),"This is the first template for a twitter copy",user),
+                new Tweet(LocalDateTime.now(),"If you want to be me then be me",user),
+                new Tweet(LocalDateTime.now(),"Fourth Tweet",user)
+
+        );
+
+        tweetRepository.saveAll(tweets);
     }
 }

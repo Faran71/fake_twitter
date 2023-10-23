@@ -1,6 +1,7 @@
 package com.example.twitter.controllers;
 
 import com.example.twitter.models.Tweet;
+import com.example.twitter.repositories.TweetRepository;
 import com.example.twitter.services.TweetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,14 +17,23 @@ public class TweetController {
     @Autowired
     TweetService tweetService;
 
+    @Autowired
+    TweetRepository tweetRepository;
+
     @GetMapping
     public ResponseEntity<List<Tweet>> getAllTweets(){
         return new ResponseEntity(tweetService.findAllTweets(), HttpStatus.FOUND);
     }
 
     @PostMapping(value = "postTweet/{userId}")
-    public ResponseEntity<Tweet> postTweet(@PathVariable Long userId, @RequestBody String Content){
+    public ResponseEntity<List<Tweet>> postTweet(@PathVariable Long userId, @RequestBody String Content){
         Tweet createTweet = tweetService.createTweet(userId, Content);
-        return new ResponseEntity(createTweet, HttpStatus.CREATED);
+        return new ResponseEntity(tweetRepository.findAll() ,HttpStatus.CREATED);
+    }
+
+    @PutMapping(value = "likeTweet/{tweetId}")
+    public ResponseEntity<Tweet> likeTweet(@PathVariable Long tweetId){
+        Tweet updatedTweet = tweetService.likeTweet(tweetId);
+        return new ResponseEntity<>(updatedTweet,HttpStatus.ACCEPTED);
     }
 }

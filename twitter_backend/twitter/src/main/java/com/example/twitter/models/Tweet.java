@@ -20,6 +20,9 @@ public class Tweet {
     @Column
     private String content;
 
+    @Column
+    private int likes;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnoreProperties({"tweet"})
@@ -32,6 +35,7 @@ public class Tweet {
         this.tweetDateTime = tweetDateTime;
         this.content = content;
         this.user = user;
+        this.likes = 0;
     }
 
     public Long getId() {
@@ -64,5 +68,13 @@ public class Tweet {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 }

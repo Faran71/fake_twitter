@@ -33,5 +33,13 @@ public class TweetService {
         return newTweet;
     }
 
+    public Tweet likeTweet(Long tweetId){
+        Tweet changeTweet = tweetRepository.findById(tweetId).get();
+        int likes = changeTweet.getLikes();
+        changeTweet.setLikes(likes+1);
+        tweetRepository.save(changeTweet);
+        return changeTweet;
+    }
+
 
 }
