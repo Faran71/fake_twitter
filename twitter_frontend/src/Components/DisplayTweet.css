@@ -1,6 +1,9 @@
 .box {
-    border-style: dashed;
-    width: 40vw;
+    border-style: solid;
+    border-width: 2px;
+    width: 46vw;
+    margin-bottom: 1vh;
+    margin-left: 2vw;
 }
 
 .middle {

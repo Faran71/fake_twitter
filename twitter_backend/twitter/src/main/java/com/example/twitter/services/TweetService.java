@@ -33,13 +33,17 @@ public class TweetService {
         return newTweet;
     }
 
-    public Tweet likeTweet(Long tweetId){
-        Tweet changeTweet = tweetRepository.findById(tweetId).get();
-        int likes = changeTweet.getLikes();
-        changeTweet.setLikes(likes+1);
-        tweetRepository.save(changeTweet);
-        return changeTweet;
-    }
+//    public Tweet likeTweet(Long tweetId, Long userId){
+//        Tweet changeTweet = tweetRepository.findById(tweetId).get();
+//        User userThatLiked = userRepository.findById(userId).get();
+//        List<User> usersThatLikedTweet = changeTweet.getUserLikedTweet();
+//        if (!usersThatLikedTweet.contains(userThatLiked)) {
+//            usersThatLikedTweet.add(userThatLiked);
+//            changeTweet.setUserLikedTweet(usersThatLikedTweet);
+//            tweetRepository.save(changeTweet);
+//        }
+//        return changeTweet;
+//    }
 
 
 }

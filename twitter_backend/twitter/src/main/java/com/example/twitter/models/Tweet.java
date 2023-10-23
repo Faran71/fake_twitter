@@ -4,9 +4,11 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "tweets")
 public class Tweet {
 
     @Id
@@ -21,11 +23,14 @@ public class Tweet {
     private String content;
 
     @Column
-    private int likes;
+    private List<String> usersLikedTweet;
+
+//    @ManyToMany(mappedBy = "tweets")
+//    private List<User> userLikedTweet;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties({"tweet"})
+    @JsonIgnoreProperties({"tweets"})
     private User user;
 
     public Tweet() {
@@ -35,7 +40,7 @@ public class Tweet {
         this.tweetDateTime = tweetDateTime;
         this.content = content;
         this.user = user;
-        this.likes = 0;
+        this.usersLikedTweet = new ArrayList<>();
     }
 
     public Long getId() {
@@ -70,11 +75,20 @@ public class Tweet {
         this.user = user;
     }
 
-    public int getLikes() {
-        return likes;
+//    public int getLikes() {
+//        return likes;
+//    }
+//
+//    public void setLikes(int likes) {
+//        this.likes = likes;
+//    }
+
+
+    public List<String> getUsersLikedTweet() {
+        return usersLikedTweet;
     }
 
-    public void setLikes(int likes) {
-        this.likes = likes;
+    public void setUsersLikedTweet(List<String> usersLikedTweet) {
+        this.usersLikedTweet = usersLikedTweet;
     }
 }

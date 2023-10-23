@@ -23,6 +23,13 @@ public class User {
     @Column
     private String password;
 
+//    @ManyToMany
+//    @JoinTable(name = "user_likedTweet",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "tweet_id"))
+//    private List<Tweet> likedTweets;
+
+
     @OneToMany(mappedBy = "user")
     @JsonIgnoreProperties({"user"})
     private List<Tweet> tweets;
@@ -35,6 +42,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.tweets = new ArrayList<>();
+//        this.likedTweets = new ArrayList<>();
     }
 
     public Long getId() {
@@ -76,4 +84,12 @@ public class User {
     public void setTweets(List<Tweet> tweets) {
         this.tweets = tweets;
     }
+
+//    public List<Tweet> getLikedTweets() {
+//        return likedTweets;
+//    }
+//
+//    public void setLikedTweets(List<Tweet> likedTweets) {
+//        this.likedTweets = likedTweets;
+//    }
 }
