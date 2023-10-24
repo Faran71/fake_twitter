@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,21 +30,22 @@ public class TweetService {
         newTweet.setUser(user);
         newTweet.setTweetDateTime(LocalDateTime.now());
         newTweet.setContent(Content);
+        newTweet.setUsersLikedTweet(new ArrayList<>());
         tweetRepository.save(newTweet);
         return newTweet;
     }
 
-//    public Tweet likeTweet(Long tweetId, Long userId){
-//        Tweet changeTweet = tweetRepository.findById(tweetId).get();
-//        User userThatLiked = userRepository.findById(userId).get();
-//        List<User> usersThatLikedTweet = changeTweet.getUserLikedTweet();
-//        if (!usersThatLikedTweet.contains(userThatLiked)) {
-//            usersThatLikedTweet.add(userThatLiked);
-//            changeTweet.setUserLikedTweet(usersThatLikedTweet);
-//            tweetRepository.save(changeTweet);
-//        }
-//        return changeTweet;
-//    }
+    public Tweet likeTweet(Long tweetId, Long userId){
+        Tweet changeTweet = tweetRepository.findById(tweetId).get();
+        User userThatLiked = userRepository.findById(userId).get();
+        List<String> usersThatLikedTweet = changeTweet.getUsersLikedTweet();
+        if (!usersThatLikedTweet.contains(userThatLiked.getEmail())) {
+            usersThatLikedTweet.add(userThatLiked.getEmail());
+            changeTweet.setUsersLikedTweet(usersThatLikedTweet);
+            tweetRepository.save(changeTweet);
+        }
+        return changeTweet;
+    }
 
 
 }

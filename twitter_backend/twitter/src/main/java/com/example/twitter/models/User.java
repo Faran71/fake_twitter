@@ -34,6 +34,10 @@ public class User {
     @JsonIgnoreProperties({"user"})
     private List<Tweet> tweets;
 
+    @OneToMany(mappedBy = "user")
+    @JsonIgnoreProperties({"user","tweets"})
+    private List<Comment> comments;
+
     public User() {
     }
 
@@ -42,6 +46,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.tweets = new ArrayList<>();
+        this.comments = new ArrayList<>();
 //        this.likedTweets = new ArrayList<>();
     }
 
@@ -92,4 +97,13 @@ public class User {
 //    public void setLikedTweets(List<Tweet> likedTweets) {
 //        this.likedTweets = likedTweets;
 //    }
+
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 }

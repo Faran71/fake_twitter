@@ -1,20 +1,20 @@
 import "./DisplayTweet.css"
 import { useState } from "react";
 
-const DisplayTweet = ({tweet}) => {
+const DisplayTweet = ({tweet, currentUser}) => {
 
     // const [tweet, setTweet] = useState(tweet);
     const time = tweet.tweetDateTime.split("T");
-    const [numberLikes, setNumberLikes] = useState(tweet.likes);
+    const [numberLikes, setNumberLikes] = useState(tweet.usersLikedTweet.length);
 
     const likeTweet = async (tweet) => {
-        const newResponse = await fetch(`http://localhost:8080/tweets/likeTweet/${tweet.id}`,{
-            method: "PUT",
+        const newResponse = await fetch(`http://localhost:8080/tweets/likeTweet/${tweet.id}/${currentUser.id}`,{
+            method: "POST",
             headers: {"Content-Type": "application/json"},
         })
         const data = await newResponse.json();
         console.log(data);
-        setNumberLikes(data.likes);
+        setNumberLikes(data.usersLikedTweet.length);
     }
 
     const handleLikeClick = (event) => {

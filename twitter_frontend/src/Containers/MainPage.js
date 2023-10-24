@@ -10,7 +10,7 @@ const MainPage = ({currentUser, allTweets, setAllTweets}) => {
     const displayTweets = allTweets.map((tweet) => {
         return(
             <div>
-                <DisplayTweet tweet={tweet}/>
+                <DisplayTweet tweet={tweet} currentUser={currentUser}/>
             </div>
         )
     })
@@ -48,6 +48,7 @@ const MainPage = ({currentUser, allTweets, setAllTweets}) => {
                     </div>
                 </div>
                 <form className="form" onSubmit={handleTweetFormSubmit}>
+                    <h2>Wanna write a tweet</h2>
                     <input type="text"  
                     name="name"
                     placeholder="Tweet...."

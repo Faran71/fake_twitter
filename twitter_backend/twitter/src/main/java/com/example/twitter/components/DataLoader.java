@@ -1,9 +1,12 @@
 package com.example.twitter.components;
 
+import com.example.twitter.models.Comment;
 import com.example.twitter.models.Tweet;
 import com.example.twitter.models.User;
+import com.example.twitter.repositories.CommentRepository;
 import com.example.twitter.repositories.TweetRepository;
 import com.example.twitter.repositories.UserRepository;
+import com.example.twitter.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -22,6 +25,9 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     TweetRepository tweetRepository;
+
+    @Autowired
+    CommentRepository commentRepository;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -45,5 +51,10 @@ public class DataLoader implements ApplicationRunner {
         );
 
         tweetRepository.saveAll(tweets);
+
+        Comment comment = new Comment("First Comment",user, tweets.get(0));
+
+        commentRepository.save(comment);
+
     }
 }

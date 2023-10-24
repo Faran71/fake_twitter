@@ -33,6 +33,11 @@ public class Tweet {
     @JsonIgnoreProperties({"tweets"})
     private User user;
 
+    @OneToMany(mappedBy = "tweet")
+    @JsonIgnoreProperties({"tweet","user"})
+    private List<Comment> comments;
+
+
     public Tweet() {
     }
 
@@ -41,6 +46,7 @@ public class Tweet {
         this.content = content;
         this.user = user;
         this.usersLikedTweet = new ArrayList<>();
+        this.comments = new ArrayList<>();
     }
 
     public Long getId() {
@@ -90,5 +96,13 @@ public class Tweet {
 
     public void setUsersLikedTweet(List<String> usersLikedTweet) {
         this.usersLikedTweet = usersLikedTweet;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 }

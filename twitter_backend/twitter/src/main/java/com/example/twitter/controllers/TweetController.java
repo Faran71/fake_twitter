@@ -31,9 +31,9 @@ public class TweetController {
         return new ResponseEntity(tweetRepository.findAll() ,HttpStatus.CREATED);
     }
 
-//    @PostMapping(value = "likeTweet/{tweetId}/{userId}")
-//    public ResponseEntity<Tweet> likeTweet(@PathVariable Long tweetId, @PathVariable Long userId){
-//        Tweet updatedTweet = tweetService.likeTweet(tweetId,userId);
-//        return new ResponseEntity<>(updatedTweet,HttpStatus.ACCEPTED);
-//    }
+    @PostMapping(value = "likeTweet/{tweetId}/{userId}")
+    public ResponseEntity<Tweet> likeTweet(@PathVariable Long tweetId, @PathVariable Long userId){
+        Tweet updatedTweet = tweetService.likeTweet(tweetId,userId);
+        return new ResponseEntity<>(updatedTweet,HttpStatus.ACCEPTED);
+    }
 }
