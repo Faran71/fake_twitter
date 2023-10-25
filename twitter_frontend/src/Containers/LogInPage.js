@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { red } from "@mui/material/colors";
 
 
 const LogInPage = ({setCurrentUser, currentUser, allUsers}) => {
@@ -27,6 +28,10 @@ const LogInPage = ({setCurrentUser, currentUser, allUsers}) => {
     const openModal = () => {setIsOpen(true)};
     const closeModal = () => {setIsOpen(false)};
 
+
+    const [hideWrongLogInMessage, setHideWrongLogInMessage] = useState(true);
+    const [hideEmailAlreadyInUse, setHideEmailAlreadyInUse] = useState(true);
+
     const postRegisterUser = async (registerName, registerEmail, registerPassword) => {
         let temp = {
             name: registerName,
@@ -38,9 +43,16 @@ const LogInPage = ({setCurrentUser, currentUser, allUsers}) => {
             headers: {"Content-Type": "application/json"},
             body:JSON.stringify(temp)
         })
-        const newR = await newResponse.json();
-        console.log(newR);
-        setCurrentUser(newR);
+        if(newResponse.status === 202){
+            const newR = await newResponse.json();
+            setCurrentUser(newR);
+            setHideEmailAlreadyInUse(true);
+            setRegisterName("");
+            setRegisterPassword("");
+            setLogInEmail("");
+        } else {
+            setHideEmailAlreadyInUse(false);
+        }
     }
 
     const handleRegistrationFormSubmit = (event) => {
@@ -66,14 +78,22 @@ const LogInPage = ({setCurrentUser, currentUser, allUsers}) => {
             headers: {"Content-Type": "application/json"},
             body:JSON.stringify(temp)
         })
-        const newC = await newResponse.json();
-        setCurrentUser(newC);
+        console.log(newResponse.status);
+        if(newResponse.status === 202){
+            const newC = await newResponse.json();
+            setCurrentUser(newC);
+            navigate("/MainPage");
+            setLogInEmail("");
+            setLogInPassword("");
+            setHideWrongLogInMessage(true);
+        } else {
+            setHideWrongLogInMessage(false);
+        }
     }
 
     const handleLogInFormSubmit = (event) => {
         event.preventDefault();
         postLogInCustomer(logInEmail,logInPassword);
-        navigate("/MainPage");
     }
 
     useEffect(() => {
@@ -101,6 +121,7 @@ const LogInPage = ({setCurrentUser, currentUser, allUsers}) => {
                     ariaHideApp={false}
                 >
                     <h1>Create your Account</h1>
+                    <p hidden={hideEmailAlreadyInUse} style={{color:"red"}}>Email already in use</p>
                     <form onSubmit={handleRegistrationFormSubmit} className="registration">
                         <input type="text" 
                         name="name"
@@ -148,6 +169,7 @@ const LogInPage = ({setCurrentUser, currentUser, allUsers}) => {
                         onChange={(e) => setLogInPassword(e.target.value)}
                         />
                         <button type="submit">Log In</button>
+                        <p hidden={hideWrongLogInMessage} style={{color:"red"}}>Wrong Credentials</p>
                     </form>
                 </Modal>
             </div>

@@ -1,9 +1,11 @@
 import "./MainPage.css"
+import { useNavigate } from "react-router-dom"
 
 import DisplayTweet from "../Components/DisplayTweet"
 import { useEffect, useState } from "react"
 
-const MainPage = ({currentUser, allTweets, setAllTweets}) => {
+const MainPage = ({currentUser, allTweets, setAllTweets, setCurrentUser}) => {
+    const navigate = useNavigate();
 
     const [newTweet, setNewTweet] = useState("");
 
@@ -33,6 +35,12 @@ const MainPage = ({currentUser, allTweets, setAllTweets}) => {
         }
     }
 
+    const handleLogOutClick = (event) => {
+        event.preventDefault();
+        setCurrentUser(null);
+        navigate("/");
+    }
+
 
 
     if(currentUser){
@@ -40,6 +48,7 @@ const MainPage = ({currentUser, allTweets, setAllTweets}) => {
             <div className="main">
                 <div className="left">
                     <p>Hi {currentUser.name}</p>
+                    <button onClick={handleLogOutClick}>Log Out</button>
                 </div>
                 <div className="middle">
                     <h3>Home</h3>

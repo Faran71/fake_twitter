@@ -6,10 +6,7 @@ import com.example.twitter.services.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +25,11 @@ public class CommentController {
     @GetMapping(value = "/tweet/{tweetId}")
     public ResponseEntity<List<Comment>> getCommentsForTweet(@PathVariable Long tweetId){
         return new ResponseEntity<>(commentService.findCommentsWithTweet(tweetId),HttpStatus.FOUND);
+    }
+
+    @PostMapping(value = "/writeComment/{userId}/{tweetId}")
+    public ResponseEntity<List<Comment>> writeComment(@PathVariable Long userId, @PathVariable Long tweetId, @RequestBody String comment){
+        Comment newComment = commentService.addComment(comment,userId,tweetId);
+        return new ResponseEntity<>(commentService.findCommentsWithTweet(tweetId),HttpStatus.OK);
     }
 }

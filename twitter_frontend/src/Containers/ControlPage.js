@@ -44,6 +44,7 @@ const ControlPage = () => {
                     currentUser={currentUser}
                     allTweets={allTweets}
                     setAllTweets={setAllTweets}
+                    setCurrentUser={setCurrentUser}
                     />} key={2}/>
                     
                 </Routes>

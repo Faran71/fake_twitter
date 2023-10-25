@@ -15,3 +15,44 @@
     flex-direction: row;
     justify-content: space-evenly;
 }
+
+.modal-tweet {
+    height: 20vh;
+    width: 50vw;
+    border-style: solid;
+    padding-left: 5vw;
+    margin-bottom: 2vh;
+}
+
+.each-comment {
+    border-style: solid;
+    /* height: 5vh; */
+    width: 40vw;
+    margin-left: 5vw;
+    padding-left: 5vw;
+    overflow-x: scroll;
+}
+
+.no-comment {
+    width: 20vw;
+    margin-left: 15vw;
+    padding-left: 5vw;
+}
+
+.write-comment {
+    border-style: solid;
+    width: 40vw;
+    margin-left: 5vw;
+    padding-left: 5vw;
+    margin-bottom: 3vh;
+}
+
+.write-comment input {
+    width: 30vw;
+    height: 10vh;
+    border: none;
+}
+
+.write-comment button {
+    height: 5vh;
+}
