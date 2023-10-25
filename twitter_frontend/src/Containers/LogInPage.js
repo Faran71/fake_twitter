@@ -109,7 +109,7 @@ const LogInPage = ({setCurrentUser, currentUser, allUsers}) => {
                 <img src="./bird.jpeg" className="img"/>
             </div>
             <div className="right">
-                <h1>Happening Now</h1>
+                <h2>Happening Now</h2>
                 <h4>Join Today</h4>
 
                 <button className="btn1" onClick={openModal}>Create Account</button>

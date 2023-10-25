@@ -1,9 +1,11 @@
 .box {
     border-style: solid;
     border-width: 2px;
-    width: 46vw;
+    width: 45vw;
     margin-bottom: 1vh;
     margin-left: 2vw;
+    background-color: whitesmoke;
+    font-size: large;
 }
 
 .middle {
@@ -14,6 +16,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    height: 8vh;
+}
+
+.bottom button {
+    width: 7vw;
 }
 
 .modal-tweet {
