@@ -96,6 +96,14 @@ const LogInPage = ({setCurrentUser, currentUser, allUsers}) => {
         postLogInCustomer(logInEmail,logInPassword);
     }
 
+    // const [selectedImage, setSelectedImage] = useState(null);
+
+    // // Handle file selection
+    // const handleFileChange = (e) => {
+    //     const file = e.target.files[0];
+    //     setSelectedImage(file);
+    // };
+
     useEffect(() => {
         if(currentUser){
             navigate("/MainPage");
@@ -122,6 +130,16 @@ const LogInPage = ({setCurrentUser, currentUser, allUsers}) => {
                 >
                     <h1>Create your Account</h1>
                     <p hidden={hideEmailAlreadyInUse} style={{color:"red"}}>Email already in use</p>
+                    {/* <div>
+                        <input type="file" accept="image/*" onChange={handleFileChange} />
+                        {selectedImage && (
+                            <div>
+                            <p>Selected Image:</p>
+                            {console.log(URL.createObjectURL(selectedImage))}
+                            <img src={URL.createObjectURL(selectedImage)} alt="Selected" />
+                            </div>
+                        )}
+                    </div> */}
                     <form onSubmit={handleRegistrationFormSubmit} className="registration">
                         <input type="text" 
                         name="name"

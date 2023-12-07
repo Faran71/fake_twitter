@@ -63,3 +63,8 @@
 .write-comment button {
     height: 5vh;
 }
+
+.comments {
+    height: 30vh;
+    overflow-y: scroll;
+}

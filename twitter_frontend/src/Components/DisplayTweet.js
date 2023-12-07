@@ -130,7 +130,7 @@ const DisplayTweet = ({tweet, currentUser}) => {
                             />
                             <button type="submit">Comment</button>
                         </form>
-                        <div>
+                        <div className="comments">
                             {showComments(comments)}
                         </div>
                     </Modal>

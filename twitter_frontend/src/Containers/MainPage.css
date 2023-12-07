@@ -6,8 +6,17 @@
 .left {
     width: 20vw;
     padding-left: 0;
-    font-size: larger;
+    font-size: x-large;
     color: blue;
+}
+
+.left p {
+    margin-top: 30vh;
+    margin-left: 7vw;
+}
+
+.left button {
+    margin-left: 8vw;
 }
 
 

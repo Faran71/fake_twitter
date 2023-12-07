@@ -42,7 +42,6 @@ const MainPage = ({currentUser, allTweets, setAllTweets, setCurrentUser}) => {
     }
 
 
-
     if(currentUser){
         return(
             <div className="main">
