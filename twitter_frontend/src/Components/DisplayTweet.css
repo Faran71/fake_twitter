@@ -16,12 +16,29 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    height: 8vh;
+    height: 6vh;
 }
+
+.bottom p {
+    margin-top: 1vh;
+}
+
 
 .bottom button {
     width: 7vw;
+    background: none;
+    border: none;
 }
+
+.heart_like {
+    height: 4vh;
+    fill: red;
+}
+
+.comment_button {
+    height: 4vh;
+}
+
 
 .modal-tweet {
     height: 20vh;
@@ -68,3 +85,4 @@
     height: 30vh;
     overflow-y: scroll;
 }
+

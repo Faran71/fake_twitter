@@ -1,5 +1,5 @@
 import "./DisplayTweet.css"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from 'react-modal';
 
 const DisplayTweet = ({tweet, currentUser}) => {
@@ -50,6 +50,21 @@ const DisplayTweet = ({tweet, currentUser}) => {
         likeTweet(tweet);
     }
 
+    const [redLike, setRedLike] = useState(false)
+
+    let chooseHeartColour = () => {
+        if(!redLike){
+            return(
+                <img src="./heart.png" onClick={handleLikeClick} className="heart_like"/>
+            )
+        } else {
+            return(
+                <img src="./heart_red.png" onClick={handleLikeClick} className="heart_like"/>
+            )
+        }
+    }
+
+
 // To show the comments for each tweet
     const showComments = (comments) => {
         if(comments.length === 0){
@@ -82,11 +97,19 @@ const DisplayTweet = ({tweet, currentUser}) => {
     }
     const handleWriteComment = (event) => {
         event.preventDefault();
-        if(newComment!=""){
+        if(newComment!==""){
             writeComment(newComment);
             setNewComment("");
         }
     }
+
+    useEffect(() => {
+        tweet.usersLikedTweet.filter((temp) => {
+            if(temp === currentUser.email){
+                setRedLike(true);
+            }
+        })
+    },[])
 
 
 
@@ -104,8 +127,9 @@ const DisplayTweet = ({tweet, currentUser}) => {
                 </div>
                 <div className="bottom">
                     <p>{numberLikes}</p>
-                    <button onClick={handleLikeClick}>Like</button>
-                    <button onClick={openModal}>Comment</button>
+                    {chooseHeartColour()}
+                    {/* <img src="./heart.png" onClick={handleLikeClick} className="heart_like"/> */}
+                    <img src="./comment.png" onClick={openModal} className="comment_button"/>
                     <Modal
                     isOpen={isOpen}
                     onRequestClose={closeModal}
