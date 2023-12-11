@@ -32,7 +32,6 @@
 
 .heart_like {
     height: 4vh;
-    fill: red;
 }
 
 .comment_button {
@@ -51,6 +50,7 @@
 .each-comment {
     border-style: solid;
     /* height: 5vh; */
+    height: auto;
     width: 40vw;
     margin-left: 5vw;
     padding-left: 5vw;

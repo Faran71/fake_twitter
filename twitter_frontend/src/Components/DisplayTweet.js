@@ -35,6 +35,8 @@ const DisplayTweet = ({tweet, currentUser}) => {
     const [numberLikes, setNumberLikes] = useState(tweet.usersLikedTweet.length);
 
     // To like a tweet
+    const [redLike, setRedLike] = useState(false);
+
     const likeTweet = async (tweet) => {
         const newResponse = await fetch(`http://localhost:8080/tweets/likeTweet/${tweet.id}/${currentUser.id}`,{
             method: "POST",
@@ -48,11 +50,15 @@ const DisplayTweet = ({tweet, currentUser}) => {
     const handleLikeClick = (event) => {
         event.preventDefault();
         likeTweet(tweet);
+        setRedLike(!redLike);
     }
 
-    const [redLike, setRedLike] = useState(false)
-
     let chooseHeartColour = () => {
+        for(let email in tweet.usersLikedTweet){
+            if(email === currentUser.email){
+                setRedLike(true);
+            }
+        }
         if(!redLike){
             return(
                 <img src="./heart.png" onClick={handleLikeClick} className="heart_like"/>
@@ -110,8 +116,6 @@ const DisplayTweet = ({tweet, currentUser}) => {
             }
         })
     },[])
-
-
 
 
 

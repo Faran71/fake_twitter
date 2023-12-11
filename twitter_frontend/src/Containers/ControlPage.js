@@ -24,6 +24,7 @@ const ControlPage = () => {
 
     useEffect(() => {
         fetchUsers();
+        fetchTweets();
     },[currentUser])
 
     useEffect(() => {

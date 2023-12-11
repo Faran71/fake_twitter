@@ -43,6 +43,10 @@ public class TweetService {
             usersThatLikedTweet.add(userThatLiked.getEmail());
             changeTweet.setUsersLikedTweet(usersThatLikedTweet);
             tweetRepository.save(changeTweet);
+        } else {
+            usersThatLikedTweet.remove(userThatLiked.getEmail());
+            changeTweet.setUsersLikedTweet(usersThatLikedTweet);
+            tweetRepository.save(changeTweet);
         }
         return changeTweet;
     }

@@ -8,17 +8,27 @@
     padding-left: 0;
     font-size: x-large;
     color: blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.left p {
-    margin-top: 30vh;
+/* .left p {
+    margin-top: 10vh;
     margin-left: 7vw;
-}
+} */
 
-.left button {
+/* .left button {
     margin-left: 8vw;
-}
+    text-align: center;
+} */
 
+.profile_img {
+    height: 30vh;
+    width: 15vw;
+    padding-top: 10vh;
+    /* padding-left: 2.5vw; */
+}
 
 .all-tweets {
     height: 90vh;
@@ -35,6 +45,7 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 .middle h3 {
     height: 5vh;
 }
+
 
 .form {
     display: flex;

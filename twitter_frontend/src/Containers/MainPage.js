@@ -24,7 +24,7 @@ const MainPage = ({currentUser, allTweets, setAllTweets, setCurrentUser}) => {
             body:JSON.stringify(newTweet)
         })
         const data = await newResponse.json();
-        setAllTweets(data)
+        setAllTweets(data);
     }
 
     const handleTweetFormSubmit = (event) => {
@@ -46,6 +46,7 @@ const MainPage = ({currentUser, allTweets, setAllTweets, setCurrentUser}) => {
         return(
             <div className="main">
                 <div className="left">
+                <img src="./profile.jpg" className="profile_img"/><img ></img>
                     <p>Hi {currentUser.name}</p>
                     <button onClick={handleLogOutClick}>Log Out</button>
                 </div>
